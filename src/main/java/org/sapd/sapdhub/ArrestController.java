@@ -23,25 +23,42 @@ public class ArrestController {
     @GetMapping("/id")
     public Optional<Arrest> getArrestById(@RequestParam(required = true) BigInteger id) {
         System.out.println("Received ID: " + id);
+
         return arrestService.getArrestById(id);
     }
 
     @GetMapping("/date")
     public List<Arrest> getArrestByDate(@RequestParam(required = true) LocalDate date) {
         System.out.println("Received Date: " + date);
+
         return arrestService.getArrestByDate(date);
     }
 
     @GetMapping("/month")
     public List<Arrest> getArrestByMonth(@RequestParam(required = true) String month) {
         System.out.println("Received Month: " + month);
+
         return arrestService.getArrestByMonth(month);
     }
 
     @GetMapping("/zip")
     public List<Arrest> getArrestByZip(@RequestParam(required = true) String zip) {
         System.out.println("Received Zip Code: " + zip);
-        // Implement logic to search by zip code
+
         return  arrestService.getArrestByZip(zip);
+    }
+
+    @GetMapping("/area")
+    public List<Arrest> getArrestByArea(@RequestParam(required = true) String area) {
+        System.out.println("Received Area: " + area);
+
+        return  arrestService.getArrestByServiceArea(area);
+    }
+
+    @GetMapping("/keyword")
+    public List<Arrest> getArrestByKeyword(@RequestParam(required = true) String keyword) {
+        System.out.println("Received Keyword: " + keyword);
+
+        return arrestService.getArrestByKeyword(keyword);
     }
 }

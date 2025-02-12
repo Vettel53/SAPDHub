@@ -43,7 +43,7 @@ public class ArrestService {
         // Add error handling/messages
         return arrestRepository.findAll()
                 .stream()
-                .filter(arrest -> arrest.getReport_month().equals(month))
+                .filter(arrest -> arrest.getReport_month().equalsIgnoreCase(month))
                 .collect(Collectors.toList()
                 );
     }
@@ -52,12 +52,31 @@ public class ArrestService {
         // Add error handling/messages
         return arrestRepository.findAll()
                 .stream()
-                .filter(arrest -> arrest.getZip_code().equals(zip))
+                .filter(arrest -> arrest.getZip_code().equalsIgnoreCase(zip))
+                .collect(Collectors.toList()
+                );
+    }
+
+    // NORTH, EAST, SOUTH, WEST, CENTRAL, PRUE, DOWNTOWN
+    public List<Arrest> getArrestByServiceArea(String serviceArea) {
+        // Add error handling/messages
+        return arrestRepository.findAll()
+                .stream()
+                .filter(arrest -> arrest.getService_area().equalsIgnoreCase(serviceArea))
                 .collect(Collectors.toList()
                 );
     }
 
     // Find by keyword?
     // Split each offense word in sentence into array then check if the keyword equals any of them
+
+    public List<Arrest> getArrestByKeyword(String keyword) {
+        // Add error handling/messages
+        return arrestRepository.findAll()
+                .stream()
+                .filter(arrest -> arrest.getOffense().toLowerCase().contains(keyword.toLowerCase()))
+                .collect(Collectors.toList()
+                );
+    }
 
 }
