@@ -1,13 +1,17 @@
 package org.sapd.sapdhub;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigInteger;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/arrests")
 public class ArrestController {
 
     private final ArrestService arrestService;
@@ -16,10 +20,28 @@ public class ArrestController {
         this.arrestService = arrestService;
     }
 
-    @GetMapping("/arrests")
+    @GetMapping("/id")
     public Optional<Arrest> getArrestById(@RequestParam(required = true) BigInteger id) {
         System.out.println("Received ID: " + id);
         return arrestService.getArrestById(id);
     }
 
+    @GetMapping("/date")
+    public List<Arrest> getArrestByDate(@RequestParam(required = true) LocalDate date) {
+        System.out.println("Received Date: " + date);
+        return arrestService.getArrestByDate(date);
+    }
+
+    @GetMapping("/month")
+    public List<Arrest> getArrestByMonth(@RequestParam(required = true) String month) {
+        System.out.println("Received Month: " + month);
+        return arrestService.getArrestByMonth(month);
+    }
+
+    @GetMapping("/zip")
+    public List<Arrest> getArrestByZip(@RequestParam(required = true) String zip) {
+        System.out.println("Received Zip Code: " + zip);
+        // Implement logic to search by zip code
+        return  arrestService.getArrestByZip(zip);
+    }
 }
