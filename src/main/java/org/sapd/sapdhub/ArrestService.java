@@ -1,6 +1,7 @@
 package org.sapd.sapdhub;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
 import java.math.BigInteger;
@@ -17,6 +18,15 @@ public class ArrestService {
     @Autowired
     public ArrestService(ArrestRepository arrestRepository) {
         this.arrestRepository = arrestRepository;
+    }
+
+    public List<Arrest> getArrestsByFilter(BigInteger id, LocalDate date, String offense, String severity, String serviceArea, String month, String zipCode) {
+        Specification<Arrest> spec = Specification
+                .where()
+        /* Where we left off https://stackoverflow.com/questions/52280227/jpa-repository-filter-using-java-8-predicates
+        https://www.baeldung.com/spring-data-criteria-queries
+        https://github.com/eugenp/tutorials/blob/master/persistence-modules/spring-data-jpa-query/src/main/java/com/baeldung/specifications/join/AuthorSpecifications.java
+         */
     }
 
     public Optional<Arrest> getArrestById(BigInteger id) {
