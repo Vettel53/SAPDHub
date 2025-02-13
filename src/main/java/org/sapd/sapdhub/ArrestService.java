@@ -67,10 +67,7 @@ public class ArrestService {
                 );
     }
 
-    // Find by keyword?
-    // Split each offense word in sentence into array then check if the keyword equals any of them
-
-    public List<Arrest> getArrestByKeyword(String keyword) {
+    public List<Arrest> getArrestByKeyword(String keyword) { // Maybe redo this method to make keyword search through all elements
         // Add error handling/messages
         return arrestRepository.findAll()
                 .stream()
@@ -79,4 +76,20 @@ public class ArrestService {
                 );
     }
 
+    public List<Arrest> getArrestBySeverity(String severity) {
+        // Add error handling/messages
+        return arrestRepository.findAll()
+                .stream()
+                .filter(arrest -> arrest.getSeverity().equalsIgnoreCase(severity))
+                .collect(Collectors.toList()
+                );
+    }
+
+    public List<Arrest> getArrestByOffense(String offense) {
+        return arrestRepository.findAll()
+                .stream()
+                .filter(arrest -> arrest.getOffense().equalsIgnoreCase(offense))
+                .collect(Collectors.toList()
+                );
+    }
 }

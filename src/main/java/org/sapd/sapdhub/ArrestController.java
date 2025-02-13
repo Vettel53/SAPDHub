@@ -1,5 +1,6 @@
 package org.sapd.sapdhub;
 
+import org.springframework.cglib.core.Local;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +20,24 @@ public class ArrestController {
     public ArrestController(ArrestService arrestService) {
         this.arrestService = arrestService;
     }
+
+    // Use specifications and criteriaBuilder to dynamically create query.
+//    @GetMapping("/testing")
+//    public void testing(@RequestParam(required = false) BigInteger id,
+//                        @RequestParam(required = false) LocalDate date,
+//                        @RequestParam(required = false) BigInteger person_id,
+//                        @RequestParam(required = false) String offense,
+//                        @RequestParam(required = false) String severity,
+//                        @RequestParam(required = false) String area,
+//                        @RequestParam(required = false) String month,
+//                        @RequestParam(required = false) String zip)
+//    {
+//        if (id != null) {
+//            System.out.println("Received ID: " + id);
+//
+//        }
+//        System.out.println("Testing...");
+//    }
 
     @GetMapping("/id")
     public Optional<Arrest> getArrestById(@RequestParam(required = true) BigInteger id) {
@@ -60,5 +79,19 @@ public class ArrestController {
         System.out.println("Received Keyword: " + keyword);
 
         return arrestService.getArrestByKeyword(keyword);
+    }
+
+    @GetMapping("/severity")
+    public List<Arrest> getArrestBySeverity(@RequestParam(required = true) String severity) {
+        System.out.println("Received Severity: " + severity);
+
+        return arrestService.getArrestBySeverity(severity);
+    }
+
+    @GetMapping("/offense")
+    public List<Arrest> getArrestByOffense(@RequestParam(required = true) String offense) {
+        System.out.println("Received Offense: " + offense);
+
+        return arrestService.getArrestByOffense(offense);
     }
 }
