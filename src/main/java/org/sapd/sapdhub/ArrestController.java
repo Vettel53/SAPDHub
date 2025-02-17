@@ -26,7 +26,7 @@ public class ArrestController {
     }
 
     // Use specifications and criteriaBuilder to dynamically create query.
-    @GetMapping("/arrests")
+    @GetMapping("/api")
     public ResponseEntity<?> testing(@RequestParam(required = false) BigInteger id,
                                      @RequestParam(required = false) LocalDate date,
                                      @RequestParam(required = false) BigInteger person_id,
