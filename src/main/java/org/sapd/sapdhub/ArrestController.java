@@ -1,6 +1,5 @@
 package org.sapd.sapdhub;
 
-import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +12,6 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/arrests")
@@ -27,15 +25,16 @@ public class ArrestController {
 
     // Use specifications and criteriaBuilder to dynamically create query.
     @GetMapping("/api")
-    public ResponseEntity<?> testing(@RequestParam(required = false) BigInteger id,
-                                     @RequestParam(required = false) LocalDate date,
-                                     @RequestParam(required = false) BigInteger person_id,
-                                     @RequestParam(required = false) String offense,
-                                     @RequestParam(required = false) String severity,
-                                     @RequestParam(required = false) String area,
-                                     @RequestParam(required = false) String month,
-                                     @RequestParam(required = false) String zip,
-                                     @RequestParam(required = false) String keyword)
+    public ResponseEntity<?> testing(
+            @RequestParam(required = false) BigInteger id,
+            @RequestParam(required = false) LocalDate date,
+            @RequestParam(required = false) BigInteger person_id,
+            @RequestParam(required = false) String offense,
+            @RequestParam(required = false) String severity,
+            @RequestParam(required = false) String area,
+            @RequestParam(required = false) String month,
+            @RequestParam(required = false) String zip,
+            @RequestParam(required = false) String keyword)
     {
         System.out.println("Received Parameters: ");
         System.out.println("ID: " + id);

@@ -1,0 +1,125 @@
+openapi: 3.0.0
+info:
+  title: SAPD Arrests API
+  version: 1.0.0
+  description: |- 
+    This is a simple Springboot Application for filtering through SAPD Arrests (2023-2025). The information is based on the Official City of San Antonio Open Data website. If you would like to contribute or view the source code for this API, you can visit the GitHub linked below! I plan to update the dataset quite regularly so the information stays up to date.
+    
+    Some useful links:
+    - [GitHub Repository](https://github.com/Vettel53/SAPDHub)
+    - [SAPD Arrests Dataset](https://data.sanantonio.gov/dataset/sapd-arrests/resource/5bf98f1b-25c2-488c-aba7-082d7f8d38aa?filters=Zip_Code%3A78254)
+servers:
+  - url: http://localhost:8080
+    description: Production server
+paths:
+  /arrests/api:
+    get:
+      summary: Search SAPD Arrests Using Various Filters (2023-2025)
+      description: Returns a list of SAPD Arrests in JSON format
+      parameters:
+        - name: id
+          in: query
+          description: The Report ID to Search for
+          required: false
+          schema:
+            type: integer
+            format: int64
+          example: 39328004496
+        - name: date
+          in: query
+          description: The Date to Filter With
+          required: false
+          schema:
+            type: string
+            format: date
+          example: 2023-01-01
+        - name: person_id
+          in: query
+          description: The Person ID to Search for
+          required: false
+          schema:
+            type: integer
+            format: int64
+          example: 39328003358
+        - name: offense
+          in: query
+          description: The Offense to Search for
+          required: false
+          schema:
+            type: string
+          example: Assault-Bi-Married/Cohab MA
+        - name: severity
+          in: query
+          description: The Severity to Search for
+          required: false
+          schema:
+            type: string
+          example: Class A Misdemeanor
+        - name: area
+          in: query
+          description: The SAPD Service Area to Search for
+          required: false
+          schema:
+            type: string
+          example: WEST
+        - name: month
+          in: query
+          description: The Month to Search for
+          required: false
+          schema:
+            type: string
+          example: January
+        - name: zip
+          in: query
+          description: The San Antonio Zipcode to Search for
+          required: false
+          schema:
+            type: string
+          example: 78201
+      responses:
+        '200':
+          description: Search results found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 39330003757
+                    report_date:
+                      type: string
+                      example: 2023-01-01
+                    person_id:
+                      type: integer
+                      example: 16243168879
+                    offense:
+                      type: string
+                      example: Wanted Person
+                    severity:
+                      type: string
+                      example: Not Listed
+                    service_area:
+                      type: string
+                      example: WEST
+                    report_month:
+                      type: string
+                      example: January
+                    zip_code:
+                      type: string
+                      example: 78201
+                    datetime:
+                      type: string
+                      example: 2025-02-01
+        '404':
+          description: No Arrests Found Specified Given Filters
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No arrests found for the given filters.
