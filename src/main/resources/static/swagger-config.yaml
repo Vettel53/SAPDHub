@@ -7,7 +7,7 @@ info:
     
     Some useful links:
     - [GitHub Repository](https://github.com/Vettel53/SAPDHub)
-    - [SAPD Arrests Dataset](https://data.sanantonio.gov/dataset/sapd-arrests/resource/5bf98f1b-25c2-488c-aba7-082d7f8d38aa?filters=Zip_Code%3A78254)
+    - [SAPD Arrests Dataset](https://data.sanantonio.gov/dataset/sapd-arrests/resource/5bf98f1b-25c2-488c-aba7-082d7f8d38aa?filters=)
 servers:
   - url: http://localhost:8080
     description: Production server
