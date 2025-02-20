@@ -16,11 +16,12 @@ public class ArrestService {
         this.arrestRepository = arrestRepository;
     }
 
-    public List<Arrest> getArrestsByFilter(BigInteger id, LocalDate date, BigInteger personId, String offense, String severity, String serviceArea, String month, String zipCode, String keyword) {
+    public List<Arrest> getArrestsByFilter(Integer id, BigInteger report_id, LocalDate date, BigInteger personId, String offense, String severity, String serviceArea, String month, String zipCode, String keyword) {
 
         // Build dynamic query for filters | Will only return Arrests that satisfy ALL filters
         Specification<Arrest> spec = Specification
                 .where(ArrestSpecification.hasArrestId(id))
+                .and(ArrestSpecification.hasArrestReportId(report_id))
                 .and(ArrestSpecification.hasArrestDate(date))
                 .and(ArrestSpecification.hasArrestPersonId(personId))
                 .and(ArrestSpecification.hasArrestReportMonth(month))

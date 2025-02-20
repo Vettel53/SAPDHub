@@ -13,8 +13,10 @@ import java.time.LocalDate;
 public class Arrest {
 
     @Id // Primary key
-    @Column(name = "report_id", unique=true)
-    private BigInteger id;
+    @Column(name = "id", unique = true)
+    private Integer id;
+
+    private BigInteger report_id;
     private LocalDate report_date;
     private BigInteger person_id;
     private String offense;
@@ -26,13 +28,13 @@ public class Arrest {
 
     // Getters and setters
 
-
     public Arrest() {
 
     }
 
-    public Arrest(BigInteger id, LocalDate report_date, BigInteger person_id, String offense, String severity, String service_area, String report_month, String zip_code, LocalDate datetime) {
+    public Arrest(Integer id, BigInteger report_id, LocalDate report_date, BigInteger person_id, String offense, String severity, String service_area, String report_month, String zip_code, LocalDate datetime) {
         this.id = id;
+        this.report_id = report_id;
         this.report_date = report_date;
         this.person_id = person_id;
         this.offense = offense;
@@ -43,20 +45,20 @@ public class Arrest {
         this.datetime = datetime;
     }
 
-    public String getService_area() {
-        return service_area;
-    }
-
-    public void setService_area(String service_area) {
-        this.service_area = service_area;
-    }
-
-    public BigInteger getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(BigInteger id) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public BigInteger getReport_id() {
+        return report_id;
+    }
+
+    public void setReport_id(BigInteger report_id) {
+        this.report_id = report_id;
     }
 
     public LocalDate getReport_date() {
@@ -89,6 +91,14 @@ public class Arrest {
 
     public void setSeverity(String severity) {
         this.severity = severity;
+    }
+
+    public String getService_area() {
+        return service_area;
+    }
+
+    public void setService_area(String service_area) {
+        this.service_area = service_area;
     }
 
     public String getReport_month() {

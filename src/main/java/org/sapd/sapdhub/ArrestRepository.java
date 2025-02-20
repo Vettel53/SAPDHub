@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.math.BigInteger;
 
 @Repository
-public interface ArrestRepository extends JpaRepository<Arrest, BigInteger>, JpaSpecificationExecutor<Arrest> {
+public interface ArrestRepository extends JpaRepository<Arrest, Integer>, JpaSpecificationExecutor<Arrest> {
 
     //void deleteByReport_id(BigInteger reportId);
     //Optional<Arrest> findById(BigInteger id);

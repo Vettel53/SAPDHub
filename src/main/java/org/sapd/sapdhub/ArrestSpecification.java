@@ -13,8 +13,12 @@ public class ArrestSpecification {
      * If it is not NULL, it constructs a condition/predicate to filter the database.
      * @return Query or NULL
      */
-    public static Specification <Arrest> hasArrestId(BigInteger id) {
+    public static Specification <Arrest> hasArrestId(Integer id) {
         return (root, query, cb) -> id == null ? null : cb.equal(root.get("id"), id);
+    }
+
+    public static Specification <Arrest> hasArrestReportId(BigInteger report_id) {
+        return (root, query, cb) -> report_id == null ? null : cb.equal(root.get("report_id"), report_id);
     }
 
     public static Specification<Arrest> hasArrestDate(LocalDate date) {

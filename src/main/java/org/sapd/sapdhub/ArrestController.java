@@ -26,7 +26,8 @@ public class ArrestController {
     // Use specifications and criteriaBuilder to dynamically create query.
     @GetMapping("/api")
     public ResponseEntity<?> testing(
-            @RequestParam(required = false) BigInteger id,
+            @RequestParam(required = false) Integer id,
+            @RequestParam(required = false) BigInteger report_id,
             @RequestParam(required = false) LocalDate date,
             @RequestParam(required = false) BigInteger person_id,
             @RequestParam(required = false) String offense,
@@ -38,6 +39,7 @@ public class ArrestController {
     {
         System.out.println("Received Parameters: ");
         System.out.println("ID: " + id);
+        System.out.println("Report ID: " + report_id);
         System.out.println("Date: " + date);
         System.out.println("Person ID: " + person_id);
         System.out.println("Offense: " + offense);
@@ -46,7 +48,7 @@ public class ArrestController {
         System.out.println("Month: " + month);
         System.out.println("Zip Code: " + zip);
 
-        List<Arrest> arrests = arrestService.getArrestsByFilter(id, date, person_id, offense, severity, area, month, zip, keyword);
+        List<Arrest> arrests = arrestService.getArrestsByFilter(id, report_id, date, person_id, offense, severity, area, month, zip, keyword);
 
         // Return appropriate message if empty/null
         if (arrests.isEmpty()) {

@@ -19,6 +19,13 @@ paths:
       parameters:
         - name: id
           in: query
+          description: The ID to search for
+          required: false
+          schema:
+            type: integer
+          example: 1
+        - name: report_id
+          in: query
           description: The Report ID to Search for
           required: false
           schema:
@@ -87,6 +94,9 @@ paths:
                   type: object
                   properties:
                     id:
+                      type: integer
+                      example: 4
+                    report_id:
                       type: integer
                       example: 39330003757
                     report_date:
